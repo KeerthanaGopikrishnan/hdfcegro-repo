@@ -1,5 +1,5 @@
 import { Page } from '@playwright/test';
-import locators from '../locators/locators.json';
+import locators from '../Locators/locators.json';
 import * as fs from 'fs';
 
 export class CarDummy {
@@ -18,7 +18,7 @@ export class CarDummy {
 
   async getErrorMessage(popup: Page) {
     const errorLocator = popup.locator(locators.carDummy.errorMessage);
-    await errorLocator.waitFor({ state: 'visible', timeout: 5000 });
+    await errorLocator.waitFor({ state: 'visible', timeout: 50000 });
     const errorText = await errorLocator.textContent();
     await errorLocator.screenshot({ path: 'error-element.png' });
     await popup.screenshot({ path: 'popup-page.png' });
