@@ -21,8 +21,14 @@
 
 
     "HealthInsurance":{
-
+      
+      "exploreMenu": "a[title='Explore']",
+      "dropdown": "div.drop-menu.explore",
+      "healthInsuranceSection": "ul.header-ul li.parent-li",
+      "healthInsuranceLinkText": "Health Insurance Health",
+      "submenuItem": "ul li a.sub-anchor"
     },
+    
     "InsurancePlan":{
 
     },
