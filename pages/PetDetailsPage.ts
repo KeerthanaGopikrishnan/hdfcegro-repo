@@ -1,7 +1,7 @@
 import { Page, expect } from '@playwright/test';
 import { BasePage } from './BasePage';
 import { PetData } from '../utils/types';
-import locators from '../Locators/locators.json';
+import locators from '../locators/locators.json';
 
 export class PetDetailsPage extends BasePage {
   constructor(page: Page) {
@@ -20,15 +20,7 @@ export class PetDetailsPage extends BasePage {
 
   async fillLocationAndQuoteFromData(data: PetData) {
     await this.page.getByRole('textbox', { name: locators.PetDetailsPage.pincodeField }).fill(data.pincode);
-
-    const pincodeOption = this.page.getByText('123401');
-
-    // Wait for the pincode suggestion to appear
-    await expect(pincodeOption).toBeVisible({ timeout: 10000 });
-    await expect(pincodeOption).toBeEnabled();
-    await this.page.waitForTimeout(1000); // Optional buffer for dropdown animation
-    await pincodeOption.click({ timeout: 60000 });
-
+    await this.page.getByText('123401').click(),{timeout:80000};
     await this.page.getByRole('button', { name: locators.PetDetailsPage.getQuoteButton }).click();
   }
 

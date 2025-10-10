@@ -104,7 +104,10 @@
     "mobileField": "Mobile Number",
     "planList": "li.plan-details",
     "planName": "h2.plan-name",
-    "premiumText": "span.text-amount"
+    "premiumText": "span.text-amount",
+    "allowPopupButton": "button:text('Allow')"
+
+
   }
 
 }

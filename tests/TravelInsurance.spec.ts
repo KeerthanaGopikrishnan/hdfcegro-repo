@@ -7,7 +7,14 @@ import { TravelData } from '../utils/types';
 
 const testData1: TravelData[] = readTravelData('traveldata.csv');
 
-test('Travel Insurance Flow', async ({ page }) => {
+test('Travel Insurance Flow', async ({ browser }) => {
+  // ✅ Create a new context with notification permission granted
+  const context = await browser.newContext({
+    permissions: ['notifications'],
+  });
+
+  const page = await context.newPage();
+
   const home = new HomePage(page);
   await home.navigate();
   const popup = await home.openTravelInsurancePopup();

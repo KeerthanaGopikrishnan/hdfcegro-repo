@@ -1,5 +1,5 @@
 import { Page, Locator, expect } from '@playwright/test';
-import locators from '../Locators/locators.json'; // adjust path as needed
+import locators from '../locators/locators.json'; // adjust path as needed
 export class ExploreMenuPage {
   readonly page: Page;
   readonly exploreMenu: Locator;
@@ -9,12 +9,27 @@ export class ExploreMenuPage {
     this.exploreMenu = page.locator(locators.HealthInsurance.exploreMenu);
     this.dropdown = page.locator(locators.HealthInsurance.dropdown).first();
   }
+  // async navigateToSite(): Promise<void> {
+  //   await this.page.goto('https://www.hdfcergo.com', {
+  //     waitUntil: 'domcontentloaded',
+  //     timeout: 60000
+  //   });
+  // }
+
   async navigateToSite(): Promise<void> {
-    await this.page.goto('https://www.hdfcergo.com', {
-      waitUntil: 'domcontentloaded',
-      timeout: 60000
+  await this.page.setViewportSize({ width: 1920, height: 1080 }); // simulate maximize
+  await this.page.goto('https://www.hdfcergo.com', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  });
+
+  // Optional: zoom out only for WebKit
+  if (this.page.context().browser()?.browserType().name() === 'webkit') {
+    await this.page.evaluate(() => {
+      document.body.style.zoom = '80%';
     });
   }
+}
   async openExploreMenu(): Promise<void> {
     try {
       // ✅ Strategy 1: Ensure element is visible and enabled
@@ -60,5 +75,4 @@ export class ExploreMenuPage {
     return items;
   }
 }
- 
  

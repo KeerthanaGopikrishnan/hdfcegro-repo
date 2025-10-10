@@ -1,6 +1,6 @@
 import { Page } from '@playwright/test';
 import { BasePage } from './BasePage';
-import locators from '../Locators/locators.json';
+import locators from '../locators/locators.json';
 
 export class CarInsurance extends BasePage {
   constructor(page: Page) {

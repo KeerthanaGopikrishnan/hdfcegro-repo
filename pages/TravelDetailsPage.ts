@@ -1,5 +1,5 @@
 import { BasePage } from './BasePage';
-import locators from '../Locators/locators.json';
+import locators from '../locators/locators.json';
 import { TravelData } from '../utils/types';
 
 export class TravelDetailsPage extends BasePage {

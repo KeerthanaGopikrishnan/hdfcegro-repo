@@ -5,7 +5,7 @@ test('Print submenu items under Health Insurance Health', async ({
 }: {
   healthInsuranceItems: string[];
 }) => {
-  console.log('Submenu items under "Health Insurance Health":\n');
+  console.log(' Submenu items under "Health Insurance Health":\n');
 
   healthInsuranceItems.forEach((item: string, index: number) => {
     console.log(`   ${index + 1}. ${item}`);

@@ -1,6 +1,6 @@
 import { Page } from '@playwright/test';
 import { BasePage } from './BasePage';
-import locators from '../Locators/locators.json';
+import locators from '../locators/locators.json';
 import * as fs from 'fs';
 
 export class CarDummy extends BasePage {
