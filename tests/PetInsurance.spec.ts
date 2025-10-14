@@ -1,24 +1,36 @@
-import { test } from '@playwright/test';
-import { HomePage } from '../pages/HomePage';
-import { PetInsurancePage } from '../pages/PetInsurancePage';
-import { PetDetailsPage } from '../pages/PetDetailsPage';
-import { readTestData } from '../utils/readCSV';
-import { PetData } from '../utils/types';
+import { test, expect } from '../fixtures/page-fixtures'; 
 
-const testData: PetData[] = readTestData('testdata2.csv');
+import { readTestData } from '../utils/readCSV'; 
 
-test('Pet Insurance Flow', async ({ page }) => {
-  const home = new HomePage(page);
-  await home.navigate();
-  const petInsurancePopup = await home.clickPetInsurance();
+import { PetData } from '../utils/types'; 
 
-  const petInsurance = new PetInsurancePage(petInsurancePopup);
-  const petDetailsPopup = await petInsurance.clickBuyNow();
+const testData: PetData[] = readTestData('testdata2.csv'); 
 
-  const petDetails = new PetDetailsPage(petDetailsPopup);
-  const data: PetData = testData[0];
+test('Pet Insurance Flow', async ({ pages }) => { 
 
-  await petDetails.fillPetDetailsFromData(data);
-  await petDetails.fillLocationAndQuoteFromData(data);
-  await petDetails.answerQuestionsAndScreenshot();
-});
+const data: PetData = testData[0]; 
+
+// Navigate to home 
+
+ await pages.petHome.navigate(); 
+
+// Handle first popup 
+ const petInsurancePopup = await pages.petHome.clickPetInsurance(); 
+
+const petInsurance = pages.createPetInsurancePage(petInsurancePopup); 
+
+// Handle second popup 
+
+const petDetailsPopup = await petInsurance.clickBuyNow(); 
+
+const petDetails = pages.createPetDetailsPage(petDetailsPopup); 
+
+// Fill details 
+
+await petDetails.fillPetDetailsFromData(data); 
+ await petDetails.fillLocationAndQuoteFromData(data); 
+
+await petDetails.answerQuestionsAndScreenshot(); 
+
+}); 
+ 
